@@ -20,7 +20,6 @@
     @yield('css')
     <!-- Scripts -->
     @vite(['resources/sass/app.scss'])
-    `
 
     @if (config('app.locale') == 'ar')
         <link rel="stylesheet" href="{{asset('frontend/css/bootstrap-rtl.css')}}">
@@ -63,6 +62,7 @@
         </nav>
 
         <main class="container mt-3">
+            @include('partials.flash')
             @yield('content')
         </main>
     </div>
