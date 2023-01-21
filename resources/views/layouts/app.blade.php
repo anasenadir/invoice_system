@@ -68,6 +68,15 @@
     </div>
      {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
     <scrip src="{{ asset('frontend/js/fontawesome/all.min.js') }}"></scrip>
+
+    <!-- FIRST - load jquery  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     @yield('scripts')
+
+    <script>
+        $(function(){
+            $('.alert-message').delay(2000).slideUp(500).hide(0);
+        })
+    </script>
 </body>
 </html>

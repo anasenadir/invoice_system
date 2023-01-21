@@ -27,7 +27,6 @@ class Invoices extends Controller
      */
     public function create()
     {
-        // dd(file_exists('frontend/js/form-validation/jquery.form.js'));
         return view('invoices.create');
     }
 
@@ -39,8 +38,6 @@ class Invoices extends Controller
      */
     public function store(Request $request)
     {
-        // return $request;
-        
         $data['customer_name']      = $request->customer_name;
         $data['customer_email']     = $request->customer_email;
         $data['customer_mobile']    = $request->customer_mobile;
@@ -54,7 +51,6 @@ class Invoices extends Controller
         $data['shipping']           = $request->shipping ?? 0;
         $data['total_due']          = $request->total_due;
 
-        // return $data ;
 
         $invoice = Invoice::create($data);
 
@@ -67,8 +63,6 @@ class Invoices extends Controller
             $invoice_details[$i]['productn_subtotal']    = $request->product_subtotal[$i];
             $invoice_details[$i]['invoice_id']          = $invoice->id;
         }
-
-        // $details = $invoice->details->insertMo($invoice_details);
         $details =  InvoiceDetails::insert($invoice_details);
         if($details){
             return redirect()->to('invoice')->with('message',
@@ -79,25 +73,13 @@ class Invoices extends Controller
             );
         }
 
-        // foreach
-        return redirect()->to('invoice')->with(
-                [
-                    'message' => 'There something wrong', 
-                    'alter_type' => 'alert-danger'
-                ]
-            );
-        // if($invoice){
-        //     // return $invoice_details;
-    
-        //     // InvoiceDetails::insert($invoice_details);
-            
-        // }
-
-        // foreach
-
-        // return redirect()->to('invoice')->with();
-        // return $data;
-    }
+        return redirect()->to('invoice')->with('message' , 
+            [
+                'value' => 'There something wrong', 
+                'alter_type' => 'alert-danger'
+            ]
+        );
+}
 
     /**
      * Display the specified resource.

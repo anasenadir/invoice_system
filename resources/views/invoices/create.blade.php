@@ -181,13 +181,6 @@
 @endsection
 
 @section('scripts')
-
-
-    {{-- pickadate --}}
-    <!-- ✅ FIRST - load jquery ✅ -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-
-
     <!-- ✅  validation libararies from project assets ✅ -->
     <script src="{{asset('frontend/js/form-validation/jquery.validate.min.js')}}"></script>
     <script src="{{asset('frontend/js/form-validation/additional-methods.min.js')}}"></script>
