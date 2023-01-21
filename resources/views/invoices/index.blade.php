@@ -36,6 +36,7 @@
                                     <th>Invoice Number</th>
                                     <th>Phone</th>
                                     <th>Total Due</th>
+                                    <th>control</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -46,6 +47,20 @@
                                         <td>{{$invoice->invoice_number}}</td>
                                         <td>{{$invoice->invoice_date}}</td>
                                         <td>{{$invoice->total_due}}</td>
+                                        <td class="d-flex gap-1">
+                                            <button class="btn btn-primary btn-sm">
+                                                <a href="{{route('invoice.edit' , $invoice->id)}} ">
+                                                    <i class="fa-sharp fa-solid fa-pen-to-square text-light"></i>
+                                                </a>
+                                            </button>
+                                            <form action="{{route('invoice.destroy' , $invoice->id)}}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-danger btn-sm" type="submit" onclick="return confirm('Are you sure you want to delete this record?')">
+                                                    <i class="fa-sharp fa-solid fa-trash text-light"></i>
+                                                </button>
+                                            </form>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

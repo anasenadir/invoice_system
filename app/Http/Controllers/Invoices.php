@@ -90,12 +90,10 @@ class Invoices extends Controller
     public function show($id)
     {
         $invoice = Invoice::find($id); 
-
-
         if(!$invoice){
             return back();
         }
-        return view('invoices.show');
+        return view('invoices.show')->with('invoice' , $invoice);
     }
 
     /**
@@ -129,6 +127,26 @@ class Invoices extends Controller
      */
     public function destroy($id)
     {
-        //
+        $invoice = Invoice::find($id);
+
+        if(!$invoice){
+            return back();
+        }
+
+        $deleted = $invoice->delete();
+        if($deleted){
+            return redirect()->to('invoice')->with('message',
+                [
+                    'value' => 'Invoice deleted Successfully', 
+                    'alter_type' => 'alert-success'
+                ]
+            );
+        }
+        return redirect()->to('invoice')->with('message' , 
+            [
+                'value' => 'There something wrong', 
+                'alter_type' => 'alert-danger'
+            ]
+        );
     }
 }
