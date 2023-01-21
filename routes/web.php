@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\General;
+use App\Http\Controllers\Invoices;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [Invoices::class , 'index'])->name('home');
+
+
+// Auth::routes();
+
+Route::get('change-language/{locale}',[General::class , 'changeLanguage'])->name('changelocale');
+
+Route::resource('invoice' , Invoices::class);
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
