@@ -145,12 +145,11 @@ $(function () {
             customer_email: { required: true, email: true },
             customer_mobile: {
                 required: true,
-                digits: true,
                 minlength: 10,
                 maxlength: 14,
             },
             company_name: { required: true },
-            invoice_number: { required: true, digits: true },
+            invoice_number: { required: true},
             invoice_date: { required: true },
             sub_total: { required: true },
             descount_type: { required: true },
