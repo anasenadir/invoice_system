@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Invoice;
 use App\Models\InvoiceDetails;
 use Illuminate\Http\Request;
+use Stringable;
 
 class Invoices extends Controller
 {
@@ -15,7 +16,8 @@ class Invoices extends Controller
      */
     public function index()
     {
-        return view('invoices.index');
+        $invoices = Invoice::paginate(10)->setPageName('invoicesList');
+        return view('invoices.index')->with('invoices' , $invoices);
     }
 
     /**
@@ -56,24 +58,44 @@ class Invoices extends Controller
 
         $invoice = Invoice::create($data);
 
-        if($invoice){
-            $invoice_details = [];
-            for($i =0 ; $i < count($request->product_name) ; $i++){
-                $invoice_details[$i]['product_name']        = $request->product_name[$i];
-                $invoice_details[$i]['unit']        = $request->product_unit[$i];
-                $invoice_details[$i]['quantity']    = $request->product_quantity[$i];
-                $invoice_details[$i]['price']       = $request->product_price[$i] ;
-                $invoice_details[$i]['productn_subtotal']    = $request->product_subtotal[$i];
-                $invoice_details[$i]['invoice_id']          = $invoice->id;
-            }
-            // return $invoice_details;
-    
-            InvoiceDetails::insert($invoice_details);
+        $invoice_details = [];
+        for($i =0 ; $i < count($request->product_name) ; $i++){
+            $invoice_details[$i]['product_name']        = $request->product_name[$i];
+            $invoice_details[$i]['unit']        = $request->product_unit[$i];
+            $invoice_details[$i]['quantity']    = $request->product_quantity[$i];
+            $invoice_details[$i]['price']       = $request->product_price[$i] ;
+            $invoice_details[$i]['productn_subtotal']    = $request->product_subtotal[$i];
+            $invoice_details[$i]['invoice_id']          = $invoice->id;
+        }
+
+        // $details = $invoice->details->insertMo($invoice_details);
+        $details =  InvoiceDetails::insert($invoice_details);
+        if($details){
+            return redirect()->to('invoice')->with('message',
+                [
+                    'value' => 'Invoice Created Successfully', 
+                    'alter_type' => 'alert-success'
+                ]
+            );
         }
 
         // foreach
+        return redirect()->to('invoice')->with(
+                [
+                    'message' => 'There something wrong', 
+                    'alter_type' => 'alert-danger'
+                ]
+            );
+        // if($invoice){
+        //     // return $invoice_details;
+    
+        //     // InvoiceDetails::insert($invoice_details);
+            
+        // }
 
-        return back();
+        // foreach
+
+        // return redirect()->to('invoice')->with();
         // return $data;
     }
 
@@ -85,6 +107,12 @@ class Invoices extends Controller
      */
     public function show($id)
     {
+        $invoice = Invoice::find($id); 
+
+
+        if(!$invoice){
+            return back();
+        }
         return view('invoices.show');
     }
 
