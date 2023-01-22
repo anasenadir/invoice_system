@@ -31,12 +31,12 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Customer Name</th>
-                                    <th>Email</th>
-                                    <th>Invoice Number</th>
-                                    <th>Phone</th>
-                                    <th>Total Due</th>
-                                    <th>control</th>
+                                    <th>{{trans('invoices/lang.customer_name')}}</th>
+                                    <th>{{trans('invoices/lang.customer_email')}}</th>
+                                    <th>{{trans('invoices/lang.invoice_number')}}</th>
+                                    <th>{{trans('invoices/lang.customer_mobile')}}</th>
+                                    <th>{{trans('invoices/lang.total_due')}}</th>
+                                    <th>{{trans('invoices/lang.control')}}</th>
                                 </tr>
                             </thead>
                             <tbody>
