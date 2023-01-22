@@ -65,20 +65,10 @@ class Invoices extends Controller
         }
         $details =  InvoiceDetails::insert($invoice_details);
         if($details){
-            return redirect()->to('invoice')->with('message',
-                [
-                    'value' => 'Invoice Created Successfully', 
-                    'alter_type' => 'alert-success'
-                ]
-            );
+            return redirect()->to('invoice')->with('message',flash_message_template('create_message' , 'alert-success'));
         }
 
-        return redirect()->to('invoice')->with('message' , 
-            [
-                'value' => 'There something wrong', 
-                'alter_type' => 'alert-danger'
-            ]
-        );
+        return redirect()->to('invoice')->with('message' , flash_message_template('error_message' , 'alert-danger'));
 }
 
     /**
@@ -104,7 +94,11 @@ class Invoices extends Controller
      */
     public function edit($id)
     {
-        return view('invoices.edit');
+        $invoice = Invoice::find($id);
+        if(!$invoice){
+            return back();
+        }
+        return view('invoices.edit')->with('invoice' , $invoice);
     }
 
     /**
@@ -116,7 +110,46 @@ class Invoices extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $invoice = Invoice::find($id);
+
+        if(!$invoice){
+            return back();
+        }
+        $data['customer_name']      = $request->customer_name;
+        $data['customer_email']     = $request->customer_email;
+        $data['customer_mobile']    = $request->customer_mobile;
+        $data['company_name']       = $request->company_name;
+        $data['invoice_number']     = $request->invoice_number;
+        $data['invoice_date']       = $request->invoice_date;
+        $data['sub_total']          = $request->sub_total;
+        $data['discount_type']      = $request->descount_type ;
+        $data['discount_value']     = $request->descount_value;
+        $data['vat']                = $request->vat;
+        $data['shipping']           = $request->shipping ?? 0;
+        $data['total_due']          = $request->total_due;
+
+
+        // $invoice = Invoice::create($data);
+        $invoice->update($data);
+
+        $invoice_details = [];
+        for($i =0 ; $i < count($request->product_name) ; $i++){
+            $invoice_details[$i]['product_name']        = $request->product_name[$i];
+            $invoice_details[$i]['unit']        = $request->product_unit[$i];
+            $invoice_details[$i]['quantity']    = $request->product_quantity[$i];
+            $invoice_details[$i]['price']       = $request->product_price[$i] ;
+            $invoice_details[$i]['productn_subtotal']    = $request->product_subtotal[$i];
+            $invoice_details[$i]['invoice_id']          = $invoice->id;
+        }
+        $invoice->details()->delete();
+        // $details =  InvoiceDetails::insert($invoice_details);
+        $details = $invoice->details()->insert($invoice_details);
+        
+        if($details){
+            return redirect()->to('invoice')->with('message',flash_message_template('update_message' , 'alert-success'));
+        }
+
+        return redirect()->to('invoice')->with('message' , flash_message_template('error_message' , 'alert-danger'));
     }
 
     /**
@@ -135,18 +168,8 @@ class Invoices extends Controller
 
         $deleted = $invoice->delete();
         if($deleted){
-            return redirect()->to('invoice')->with('message',
-                [
-                    'value' => 'Invoice deleted Successfully', 
-                    'alter_type' => 'alert-success'
-                ]
-            );
+            return redirect()->to('invoice')->with('message', flash_message_template('delete_message' , 'alert-success'));
         }
-        return redirect()->to('invoice')->with('message' , 
-            [
-                'value' => 'There something wrong', 
-                'alter_type' => 'alert-danger'
-            ]
-        );
+        return redirect()->to('invoice')->with('message' , flash_message_template('error_message' , 'alert-danger'));
     }
 }
