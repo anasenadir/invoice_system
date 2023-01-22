@@ -145,17 +145,17 @@
   <body>
     <header class="clearfix">
       <div id="logo">
-        <img src="/logo.png" alt="image">
-        {{-- @if ($type == 'view')
+        @if ($type == 'view')
+          <img src="/logo.png" alt="image">
         @endif
 
         @if ($type == 'download')
-          <img src="{{public_path('Laravel.png')}}" alt="image">
+          <img src="{{public_path('logo.png')}}" alt="image">
           @endif
           
         @if ($type == 'send')
-          <img src="{{$message->embed(public_path('Laravel.png'))}}" alt="image">
-        @endif --}}
+          <img src="{{$message->embed(public_path('logo.png'))}}" alt="image">
+        @endif
       </div>
       <h1>{{ config('app.name', 'Laravel') }}</h1>
       <div id="company" class="clearfix">
