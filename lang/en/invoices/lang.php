@@ -6,7 +6,7 @@ return [
     'create_invoice'        => 'Create Invoice',
     'back_to_home'          => 'back to home',
     'invoices'              => 'Invoices',
-    
+    'invoice'               => 'Invoice',
     'customer_name'         => 'Customer Name',
     'customer_email'        => 'Customer Email',
     'customer_mobile'       => 'Customer Mobile',
@@ -36,5 +36,8 @@ return [
     'create_message'        => 'Invoice Created Successfully',
     'update_message'        => 'Invoice Updated Successfully',
     'delete_message'        => 'Invoice Deleted Successfully',
-    'error_message'         => 'There is something wrong'
+    'error_message'         => 'There is something wrong',
+
+    'download_invoice'      => 'Download Invoice',
+    'send_by_email'         => 'Send By Email',
 ];

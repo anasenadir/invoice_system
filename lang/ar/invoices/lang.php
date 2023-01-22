@@ -7,6 +7,7 @@ return [
     'create_invoice'        => 'إنشاء فاتورة',
     'back_to_home'          => 'العودة إلى الفواتير',
     'invoices'              => 'الفواتير',
+    'invoice'               => 'الفاتورة',
 
     'customer_name'         => 'اسم الزبون',
     'customer_email'        => 'البريد الإلكتروني للعميل',
@@ -36,5 +37,9 @@ return [
     'create_message'        => 'الفاتورة تم إنشاؤها بنجاح',
     'update_message'        => 'تم تحديث الفاتورة بنجاح',
     'delete_message'        => 'تم حذف الفاتورة بنجاح',
-    'error_message'         => 'هناك شيء خاطئ'
+    'error_message'         => 'هناك شيء خاطئ',
+
+
+    'download_invoice'      => 'تحميل الفاتورة ',
+    'send_by_email'         => 'ارسال عبر الإيميل',
 ];
