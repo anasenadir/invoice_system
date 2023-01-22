@@ -6,6 +6,7 @@ return [
     'invoice_system'        => 'نظام الفواتير',
     'create_invoice'        => 'إنشاء فاتورة',
     'back_to_home'          => 'العودة إلى الفواتير',
+    'invoices'              => 'الفواتير',
 
     'customer_name'         => 'اسم الزبون',
     'customer_email'        => 'البريد الإلكتروني للعميل',

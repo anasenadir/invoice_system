@@ -5,6 +5,7 @@ return [
     'invoice_system'        => 'invoices system',
     'create_invoice'        => 'Create Invoice',
     'back_to_home'          => 'back to home',
+    'invoices'              => 'Invoices',
     
     'customer_name'         => 'Customer Name',
     'customer_email'        => 'Customer Email',

@@ -15,11 +15,11 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-header ">
-                    {{session()->get('lang_rtl') ? 'yes' : "no"}}
+                <div class="card-header fs-4 text-center">
+                    {{ trans('invoices/lang.invoices') }}
                 </div>
                 <div class="card-body">
-                    <a href="{{route('invoice.create')}}">
+                    <a href="{{route('invoice.create')}}" class="d-inline-block mb-2">
                         <button class="btn btn-primary">
                             <i class="fa-solid fa-file-invoice"></i>
                             Create Invoice
