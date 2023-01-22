@@ -40,4 +40,6 @@ return [
 
     'download_invoice'      => 'Download Invoice',
     'send_by_email'         => 'Send By Email',
+
+    'send_message'          => 'The invoice has been sent successfully',
 ];

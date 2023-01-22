@@ -42,4 +42,6 @@ return [
 
     'download_invoice'      => 'تحميل الفاتورة ',
     'send_by_email'         => 'ارسال عبر الإيميل',
+
+    'send_message'          => 'تم ارسال الفاتورة بنجاح',
 ];
