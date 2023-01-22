@@ -127,8 +127,18 @@
             </div>
 
             <div class="d-flex gap-2 justify-content-center align-items-center">
-                <button class="btn btn-primary"><i class="fa-solid fa-download"></i> {{ trans('invoices/lang.download_invoice') }} </button>
-                <button class="btn btn-success"><i class="fa-sharp fa-solid fa-paper-plane"></i> {{ trans('invoices/lang.send_by_email') }} </button>
+                <a href="{{route('invoice.downloadInvoice' , $invoice->id)}}" class="link-light text-decoration-none">
+                    <button class="btn btn-primary text-light">
+                        <i class="fa-solid fa-download"></i> 
+                        {{ trans('invoices/lang.download_invoice') }} 
+                    </button>
+                </a>
+                <a href="{{route('invoice.downloadInvoice' , $invoice->id)}}" class="link-light text-decoration-none">
+                    <button class="btn btn-success">
+                        <i class="fa-sharp fa-solid fa-paper-plane"></i> 
+                        {{ trans('invoices/lang.send_by_email') }} 
+                    </button>
+                </a>
                 {{-- <button class="btn btn-primary"></button> --}}
             </div>
         </div>
