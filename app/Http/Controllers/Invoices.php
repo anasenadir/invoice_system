@@ -6,6 +6,8 @@ use App\Models\Invoice;
 use App\Models\InvoiceDetails;
 use Illuminate\Http\Request;
 use Stringable;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Mail;
 
 class Invoices extends Controller
 {
@@ -171,5 +173,38 @@ class Invoices extends Controller
             return redirect()->to('invoice')->with('message', flash_message_template('delete_message' , 'alert-success'));
         }
         return redirect()->to('invoice')->with('message' , flash_message_template('error_message' , 'alert-danger'));
+    }
+
+
+    public function downloadInvoice($id)
+    {
+        $invoice = Invoice::find($id);
+        if(!$invoice){
+            return back();
+        }
+        $type = 'download';
+        $pdf = Pdf::loadView('invoices.pdf', compact('invoice' , 'type'));
+        return $pdf->download('template'.time(). rand(90 , 9999).'.pdf');
+    }
+
+
+    public function sendInvoice($id)
+    {
+        $invoice = Invoice::find($id);
+        if(!$invoice){
+            return back();
+        }
+        
+        $type = 'send';
+        Mail::send('invoices.pdf',compact('invoice' , 'type') ,function ($message) use ($invoice) {
+            $type = 'download';
+            $pdf = Pdf::loadView('invoices.pdf', compact('invoice' , 'type'));
+            $message->to('khadija@alumaco.com')
+                    ->from('anas@gmail.com')
+                    ->subject('Created At 2022-12-20')
+                    ->attachData($pdf->output() , 'invoice.pdf');
+        });
+        
+        return redirect()->to('invoice')->with('message',flash_message_template('send_message' , 'alert-success'));
     }
 }
