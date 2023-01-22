@@ -60,7 +60,7 @@ $(function () {
         // console.log(tr);
         let qauntity = tr.find(".product_quantity").val() ?? 0;
         let price = tr.find(".product_price").val() ?? 0;
-        tr.find(".product_subtotal").val(price * qauntity);
+        tr.find(".product_subtotal").val((price * qauntity).toFixed(2));
     };
 
     const sub_total = function () {
@@ -74,7 +74,7 @@ $(function () {
             sub_total += sub_quantity * sub_price;
         });
 
-        $(".sub_total").val(sub_total);
+        $(".sub_total").val(sub_total.toFixed(2));
     };
 
     const vat = function () {
@@ -115,7 +115,7 @@ $(function () {
         // }
         total_due = total_due + shipping + vat_value;
 
-        $(".total_due").val(total_due);
+        $(".total_due").val(total_due.toFixed(2));
     };
 
 
