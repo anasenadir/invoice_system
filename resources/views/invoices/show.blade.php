@@ -133,7 +133,7 @@
                         {{ trans('invoices/lang.download_invoice') }} 
                     </button>
                 </a>
-                <a href="{{route('invoice.downloadInvoice' , $invoice->id)}}" class="link-light text-decoration-none">
+                <a href="{{route('invoice.sendInvoice' , $invoice->id)}}" class="link-light text-decoration-none">
                     <button class="btn btn-success">
                         <i class="fa-sharp fa-solid fa-paper-plane"></i> 
                         {{ trans('invoices/lang.send_by_email') }} 
