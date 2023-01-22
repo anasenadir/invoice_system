@@ -22,6 +22,7 @@ Route::get('/', [Invoices::class , 'index'])->name('home');
 
 Route::get('change-language/{locale}',[General::class , 'changeLanguage'])->name('changelocale');
 
+Route::get('invoice/download/{id}' , [Invoices::class , 'downloadInvoice'])->name('invoice.downloadInvoice');
 Route::resource('invoice' , Invoices::class);
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
