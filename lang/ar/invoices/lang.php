@@ -29,4 +29,11 @@ return [
     'shipping'              => 'شحن',
     'total_due'             => 'الاجمالي المستحق',
     'save'                  => 'حفظ',
+    'control'               => 'تحكم',
+
+
+    'create_message'        => 'الفاتورة تم إنشاؤها بنجاح',
+    'update_message'        => 'تم تحديث الفاتورة بنجاح',
+    'delete_message'        => 'تم حذف الفاتورة بنجاح',
+    'error_message'         => 'هناك شيء خاطئ'
 ];

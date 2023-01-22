@@ -28,4 +28,12 @@ return [
     'shipping'              => 'Shipping',
     'total_due'             => 'Total Due',
     'save'                  => 'Save',
+    'control'               => 'Control',
+
+
+    
+    'create_message'        => 'Invoice Created Successfully',
+    'update_message'        => 'Invoice Updated Successfully',
+    'delete_message'        => 'Invoice Deleted Successfully',
+    'error_message'         => 'There is something wrong'
 ];
