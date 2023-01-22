@@ -24,9 +24,7 @@
                             <i class="fa-solid fa-file-invoice"></i>
                             Create Invoice
                         </button>
-                    </a>
-
-
+                    </a
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
